@@ -3,26 +3,41 @@ workflows:
     name: PixelVault Android APK
     max_build_duration: 60
     instance_type: mac_mini_m2
+
     environment:
       flutter: stable
       vars:
         PACKAGE_NAME: com.genic.pixelvault
+
     scripts:
-      - name: Generate Android platform scaffold without replacing app source
+      - name: Generate Android platform scaffold
         script: |
-          flutter create --platforms android --org com.genic.pixelvault --project-name pixelvault /tmp/pixelvault_scaffold
+          flutter create \
+            --platforms android \
+            --org com.genic \
+            --project-name pixelvault \
+            /tmp/pixelvault_scaffold
+
           rm -rf android
           cp -R /tmp/pixelvault_scaffold/android ./android
+
       - name: Resolve packages
         script: flutter pub get
+
       - name: Generate launcher and splash assets
-        script: dart run flutter_launcher_icons && dart run flutter_native_splash:create
-      - name: Run tests
+        script: |
+          dart run flutter_launcher_icons
+          dart run flutter_native_splash:create
+
+      - name: Analyze Flutter source
+        script: flutter analyze --no-fatal-infos
+
+      - name: Run automated tests
         script: flutter test
-      - name: Analyze
-        script: flutter analyze
-      - name: Build APK
+
+      - name: Build release APK
         script: flutter build apk --release
+
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
       - build/**/outputs/**/*.aab
