@@ -1,0 +1,6 @@
+import 'package:flutter/material.dart';
+class PVTheme {
+ static const yellow=Color(0xFFFFC900), ink=Color(0xFF22252C), grey=Color(0xFFF1F2F4), muted=Color(0xFF6B7079), white=Colors.white;
+ static ThemeData get light=>ThemeData(useMaterial3:true,scaffoldBackgroundColor:white,colorScheme:ColorScheme.fromSeed(seedColor:yellow,primary:yellow,secondary:ink,surface:white),appBarTheme:const AppBarTheme(backgroundColor:white,foregroundColor:ink,elevation:0,centerTitle:false),cardTheme:CardThemeData(color:white,elevation:1,shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(20))),filledButtonTheme:FilledButtonThemeData(style:FilledButton.styleFrom(backgroundColor:yellow,foregroundColor:ink,shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(16)),padding:const EdgeInsets.symmetric(horizontal:20,vertical:15))),outlinedButtonTheme:OutlinedButtonThemeData(style:OutlinedButton.styleFrom(foregroundColor:ink,shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(16)),padding:const EdgeInsets.symmetric(horizontal:20,vertical:14))),);
+ static ThemeData get dark=>ThemeData.dark(useMaterial3:true).copyWith(colorScheme:ColorScheme.fromSeed(seedColor:yellow,brightness:Brightness.dark));
+}

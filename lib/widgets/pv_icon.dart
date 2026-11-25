@@ -1,0 +1,2 @@
+import 'package:flutter/material.dart';
+class PVIcon extends StatelessWidget {final String name;final IconData fallback;final double size;const PVIcon(this.name,{required this.fallback,this.size=52,super.key});@override Widget build(BuildContext context){final p='assets/icons/3d/icons/$name.png';return Image.asset(p,width:size,height:size,fit:BoxFit.contain,errorBuilder:(_,__,___)=>Icon(fallback,size:size*.65,color:const Color(0xFF22252C)));}}
